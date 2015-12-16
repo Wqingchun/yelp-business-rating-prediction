@@ -1,6 +1,6 @@
 __author__ = 'harshad'
 
-'''Yelp Business Ratings Prediction'''
+'''Discarded Script. Do Not Use.'''
 
 import simplejson
 import json
@@ -9,7 +9,7 @@ import numpy as np
 from pprint import pprint
 
 start_time = time.time()
-file = open('yelp_training_set_review.json')
+file = open('/Users/harshad/PycharmProjects/Yelp Data/yelp_training_set/yelp_training_set_review.json')
 file_content = file.read()
 json_list = []
 rows = file_content.split('\n')
@@ -72,17 +72,19 @@ for business in business_hash_set:
 print len(business_hash_map)
 print len(reverse_business_hash_map)
 
-first_i_index = 0
-first_j_index = 0
+dict = json_list[0]
+user_id = dict['user_id']
+business_id = dict['business_id']
+first_index_i = reverse_user_hash_map[user_id]
+first_index_j = reverse_business_hash_map[business_id]
 
 for dict in json_list:
     user_id = dict['user_id']
     business_id = dict['business_id']
     index_i = reverse_user_hash_map[user_id]
     index_j = reverse_business_hash_map[business_id]
-    first_i_index = index_i
-    first_j_index = index_j
     matrix[index_i,index_j] = dict['stars']
 
 print len(matrix[0])
-print 'first entry in the matrix = ',matrix[first_i_index,first_j_index]
+print 'first entry in the matrix = ',matrix[first_index_i,first_index_j]
+print first_index_i, first_index_j
